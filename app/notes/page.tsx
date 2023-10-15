@@ -1,7 +1,7 @@
 // import PocketBase from 'pocketbase';
 import Link from 'next/link';
 import styles from './Notes.module.css';
-import CreateNote from './Create';
+import CreateNote from './CreateNote';
 
 // export const dynamic = 'auto',
 //   dynamicParams = true,
@@ -10,19 +10,35 @@ import CreateNote from './Create';
 //   runtime = 'nodejs',
 //   preferredRegion = 'auto'
 
+async function getTodos(topN: number = 10) {
+  //const res = await fetch('https://jsonplaceholder.typicode.com/todos', {
+  const res = await fetch('http://127.0.0.1:5000/todos', {
+    cache: 'no-store',
+  }); /*
+    .then((r) => r.json())
+    .then((data) => {
+      return data.slice(0, topN);
+    });*/
+  const data = await res.json();
+  return data?.slice(0, topN) as any[];
+}
 
 async function getNotes() {
   // const db = new PocketBase('http://127.0.0.1:8090');
   // const result = await db.records.getList('notes');
-  const res = await fetch('http://127.0.0.1:8090/api/collections/notes/records?page=1&perPage=30', { cache: 'no-store' });
+  const res = await fetch(
+    'http://127.0.0.1:8090/api/collections/notes/records?page=1&perPage=30',
+    { cache: 'no-store' }
+  );
   const data = await res.json();
   return data?.items as any[];
 }
 
 export default async function NotesPage() {
-  const notes = await getNotes();
+  //const notes = await getNotes();
+  const notes = await getTodos();
 
-  return(
+  return (
     <div>
       <h1>Notes</h1>
       <div className={styles.grid}>
@@ -30,21 +46,20 @@ export default async function NotesPage() {
           return <Note key={note.id} note={note} />;
         })}
       </div>
-
       <CreateNote />
     </div>
   );
 }
 
 function Note({ note }: any) {
-  const { id, title, content, created } = note || {};
+  const { id, title, userId, completed } = note || {};
 
   return (
     <Link href={`/notes/${id}`}>
       <div className={styles.note}>
         <h2>{title}</h2>
-        <h5>{content}</h5>
-        <p>{created}</p>
+        <h5>{userId}</h5>
+        <p>{completed}</p>
       </div>
     </Link>
   );

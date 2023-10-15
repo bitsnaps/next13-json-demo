@@ -14,3 +14,10 @@ Build a basic note-taking app with Next.js 13 and Pocketbase.
 `./pocketbase serve`
 5. Open the [Admin UI](http://127.0.0.1:8090/_/), create collection, and update security rules to allow read/write access. 
 6. Add `experimental: { appDir: true }` to `next.config.js`
+
+### JSON Server
+We use `json-server` which you can install globally with `npm`:
+```
+# run the JSON server on port 5000
+npm run serve
+```
