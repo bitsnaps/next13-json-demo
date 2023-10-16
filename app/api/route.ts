@@ -1,7 +1,6 @@
 /*import { MongoClient, ServerApiVersion } from 'mongodb';
 
-const MONGODB_URI =
-  'mongodb+srv://promexia_mongo:GEiYc0OF9cSpvJE9@promexiac0.x9u0t5h.mongodb.net/?retryWrites=true&w=majority';
+const MONGODB_URI = process.env.MONGODB_URI;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(MONGODB_URI, {
