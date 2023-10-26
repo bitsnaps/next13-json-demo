@@ -2,16 +2,16 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import './globals.css';
+//import Footer from './@footer/page';
 
 export const metadata: Metadata = {
   title: 'Next Notes',
   description: 'A simple Next App to save notes.',
 };
 
-export default function RootedLayout({
-  children,
-}: {
+export default function Layout(props: {
   children: React.ReactNode;
+  footer: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -36,14 +36,15 @@ export default function RootedLayout({
           <nav>
             <Link href="/" className="red">
               Home
-            </Link>{' '}
+            </Link>
             |<Link href="/notes">Notes</Link> |
             <Link href="/about" replace={true}>
               About
             </Link>
           </nav>
-          <div id="container">{children}</div>
+          <div id="container">{props.children}</div>
         </main>
+        {props.footer}
       </body>
     </html>
   );

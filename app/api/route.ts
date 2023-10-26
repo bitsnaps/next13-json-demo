@@ -1,6 +1,7 @@
 /*import { MongoClient, ServerApiVersion } from 'mongodb';
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI =
+  'mongodb+srv://promexia_mongo:GEiYc0OF9cSpvJE9@promexiac0.x9u0t5h.mongodb.net/?retryWrites=true&w=majority';
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(MONGODB_URI, {
@@ -29,7 +30,6 @@ async function run() {
 */
 
 export default async function getNotes() {
-    //await run().catch(console.dir);
-    return [];
-  }
-  
+  //await run().catch(console.dir);
+  return [];
+}

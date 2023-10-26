@@ -10,6 +10,16 @@ import CreateNote from './CreateNote';
 //   runtime = 'nodejs',
 //   preferredRegion = 'auto'
 
+/*/ This allows you to genearte static pages for dynamic routes
+export async function generateStaticParams() {
+  const posts = await fetch('https://jsonplaceholder.typicode.com/posts').then((res) => res.json())
+ 
+  return posts.map((post) => ({
+    slug: post.slug,
+  }))
+}
+*/
+
 async function getTodos(topN: number = 10) {
   //const res = await fetch('https://jsonplaceholder.typicode.com/todos', {
   const res = await fetch('http://127.0.0.1:5000/todos', {
